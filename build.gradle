@@ -1,0 +1,25 @@
+/*
+ * Copyright (c) 2020. This is only for education, do not use in production. GG
+ *
+ * Alvaro Lucas Castillo Calabacero
+ * alvarolucascc96@gmail.com
+ */
+
+plugins {
+    id 'java'
+}
+
+group 'cl.ucn.disc.pdis'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    // https://mvnrepository.com/artifact/org.jsoup/jsoup
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
+
+}
