@@ -10,6 +10,8 @@ package cl.ucn.disc.pdis.scrapper;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.util.Random;
 
 import java.io.IOException;
@@ -17,30 +19,62 @@ import java.io.IOException;
 public class Main {
     /**
      * Main
-     * @param args
-     * @throws IOException
+     * @param args args
+     * @throws IOException e
      */
     public static void main (String[] args) throws IOException {
 
-        /*int delta = 50;
-        int ini = 29663-50;
-        int fin = 29663+50;
-        Random r = new Random();
-        for (int i = ini; i<=fin;i++){
+        /**
+         * Url for principal scrapping
+         */
+        String URL ="http://online.ucn.cl/directoriotelefonicoemail/fichaGenerica/?cod=";
 
-            Document doc = Jsoup.connect("http://online.ucn.cl/directoriotelefonicoemail/fichaGenerica/?cod="+i).get();
-            Element lblNombre =  doc.getElementById("lblNombre");
-            Element lblCargo =  doc.getElementById("lblCargo");
+        /**
+        id's from academics
+         */
+        int ini = 21;
+        int end = 29730; //this is the last
+        Random random = new Random(); //for delay
 
-            System.out.println("Nombre: "+lblNombre.text());
-            System.out.println("Cargo: "+lblCargo.text());
+        /**
+         * scrapping variables
+         */
+        Document doc;
+        Element lblNombre;
+        Element lblCargo;
+        Element lblUnidad;
+        Element lblEmail;
+        Element lblTelefono;
+        Element lblOficina ;
+        Element lblDireccion ;
 
+        for (int i=ini ; i <=30;i++) { //TODO: change 30 with VAR "end"
+            doc = Jsoup.connect(URL+i).get();
+
+            lblNombre =  doc.getElementById("lblNombre");
+            lblCargo =  doc.getElementById("lblCargo");
+            lblUnidad =  doc.getElementById("lblUnidad");
+            lblEmail =  doc.getElementById("lblEmail");
+            lblTelefono =  doc.getElementById("lblTelefono");
+            lblOficina =  doc.getElementById("lblOficina");
+            lblDireccion =  doc.getElementById("lblDireccion");
+
+            /**
+             * ignore this element if the name is void.
+             */
+            if (lblNombre.text().isEmpty()) {
+                continue;
+            }
+            /**
+             * Delay for secutiry
+             */
             try {
-                Thread.sleep(1000+r.nextInt(1000));
+                Thread.sleep(1000+random.nextInt(1000));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }*/
+        }
+
     }
 
 }
