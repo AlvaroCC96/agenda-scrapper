@@ -10,7 +10,7 @@ package cl.ucn.disc.pdis.scrapper;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import java.io.FileWriter;
 
 import java.util.Random;
 
@@ -45,12 +45,24 @@ public class Main {
         Element lblUnidad;
         Element lblEmail;
         Element lblTelefono;
-        Element lblOficina ;
-        Element lblDireccion ;
+        Element lblOficina;
+        Element lblDireccion;
 
-        for (int i=ini ; i <=30;i++) { //TODO: change 30 with VAR "end"
+        /**
+         * csv file variable
+         */
+        FileWriter fileWriter = new FileWriter("./src/main/resources/academics.csv");
+        //for index
+        //fileWriter.append("Nombre,Cargo,Unidad,Email,Telefono,Oficina,Direccion");
+
+        /**
+         * for fixex number
+         */
+        String phoneNumber;
+
+        for (int i=ini ; i <=end;i++) {
             doc = Jsoup.connect(URL+i).get();
-
+            //get data
             lblNombre =  doc.getElementById("lblNombre");
             lblCargo =  doc.getElementById("lblCargo");
             lblUnidad =  doc.getElementById("lblUnidad");
@@ -59,6 +71,7 @@ public class Main {
             lblOficina =  doc.getElementById("lblOficina");
             lblDireccion =  doc.getElementById("lblDireccion");
 
+
             /**
              * ignore this element if the name is void.
              */
@@ -66,15 +79,38 @@ public class Main {
                 continue;
             }
             /**
-             * Delay for secutiry
+             * Format the phone number of academic
+             */
+            phoneNumber = lblTelefono.text().replace("Fono ","");
+
+            /**
+             * Save Data and use a delay
              */
             try {
+                fileWriter.append(String.valueOf(i)+","); //the index in URL
+                fileWriter.append(lblNombre.text()+",");
+                fileWriter.append(lblCargo.text()+",");
+                fileWriter.append(lblUnidad.text()+",");
+                fileWriter.append(lblEmail.text()+",");
+                fileWriter.append(phoneNumber+","); //fixed number
+                fileWriter.append(lblOficina.text()+",");
+                fileWriter.append(lblDireccion.text());
+                fileWriter.append("\n");
+
+                /**
+                 * Delay for the secutiry
+                 */
                 Thread.sleep(1000+random.nextInt(1000));
+
             } catch (InterruptedException e) {
+                e.printStackTrace();
+
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
+        fileWriter.flush();
+        fileWriter.close();
     }
 
 }
