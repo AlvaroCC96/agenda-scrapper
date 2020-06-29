@@ -19,8 +19,6 @@ public class Academic {
     @DatabaseField(id = true)
     private int id;
     @DatabaseField
-    private int codePage;
-    @DatabaseField
     private String name;
     @DatabaseField
     private String position;
@@ -46,7 +44,6 @@ public class Academic {
      * Contructor for field
      *
      * @param id
-     * @param codePage
      * @param name
      * @param position
      * @param unit
@@ -55,9 +52,8 @@ public class Academic {
      * @param office
      * @param address
      */
-    public Academic(int id, int codePage, String name, String position, String unit, String email, String phone, String office, String address) {
+    public Academic(int id, String name, String position, String unit, String email, String phone, String office, String address) {
         this.id = id;
-        this.codePage = codePage;
         this.name = name;
         this.position = position;
         this.unit = unit;
@@ -76,7 +72,6 @@ public class Academic {
     public String toString() {
         return "Academic{" +
                 "id=" + id +
-                ", codePage='" + codePage + '\'' +
                 ", name='" + name + '\'' +
                 ", position='" + position + '\'' +
                 ", unit='" + unit + '\'' +
