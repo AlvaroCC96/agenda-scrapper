@@ -16,13 +16,14 @@ import java.util.Random;
 
 import java.io.IOException;
 
-public class Main {
+public class ScrapperCsv {
     /**
      * Main
+     *
      * @param args args
      * @throws IOException e
      */
-    public static void main (String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 
         /**
          * Url for principal scrapping
@@ -56,7 +57,7 @@ public class Main {
         //fileWriter.append("Nombre,Cargo,Unidad,Email,Telefono,Oficina,Direccion");
 
         /**
-         * for fixex number
+         * for fixed number
          */
         String phoneNumber;
 
@@ -98,7 +99,7 @@ public class Main {
                 fileWriter.append("\n");
 
                 /**
-                 * Delay for the secutiry
+                 * Delay for the security
                  */
                 Thread.sleep(1000+random.nextInt(1000));
 
